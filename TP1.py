@@ -3,10 +3,16 @@ import re
 
 #Entradas/salidas
 def cenitPolar():
+    """
+    Función: Solicitar opciones: codificar o decodificar Cenit Polar.
+    Entradas: N/A. Dentro de la función se solicita 1 o 2, para codificar o decodificar
+    respectivamente.
+    Salidas: N/A. Se muestra el resultado de la codificación/decodificación.
+    """
     print("........................")
     print("\nCenit Polar\n")
     print("........................")
-    while True:
+    while True:#Obliga ingresar 1 o 2.
         try:
             opcion=int(input("Ingrese 1 para codificar o 2 para decodificar: "))#obliga a ingresar 1 o 2 por el while try.
             if opcion==1:
@@ -18,16 +24,25 @@ def cenitPolar():
                 print("Texto decodificado: "+decodificarCenit(texto))#llama la codificación e imprimer el return de la función.
                 return ""
             else:#numero mayor a 1.
-                print("Intente de nuevo, 1. Codificar. 2. Decodificar.")
+                print("Intente de nuevo,Digite 1. Codificar. o 2. Decodificar.")
         except:#cualquier caracter diferente de numero.
-            print("Intente de nuevo, 1. Codificar. 2. Decodificar.")
+            print("Intente de nuevo, Digite 1. Codificar. o 2. Decodificar.")
             continue
 #Validaciones
 def validarTextoCodificar():#validación para texto a codificar.
+    """
+    Función: Validar que el texto que se solicita cumpla con las restrucciones.(Sólo acepta
+    letras, comas y espacios. NO acepta numeros o cualquier otro caracter.)Hasta que no se
+    ingrese de manera correcta el texto no se sale de la función.
+    Entrada: N/A. Se solicita un texto dentro de la función.
+    Salida:
+    -texto(str): Texto ingresado, este si cumple con las restrucciones.
+    """
     while True:
         texto=input("Ingrese texto a codificar(solo letras, espacios, comas. No se aceptan tildes.):")
         texto.lower()#para también trabajar con letras mayúsculas.
-        aceptados=["a","b","c","d","e","f","g","h","i","j","k","l","m","n","ñ","o","p","q","r","s","t","u","v","w","x","y","z",","," "]
+        aceptados=["a","b","c","d","e","f","g","h","i","j","k","l","m","n\
+","ñ","o","p","q","r","s","t","u","v","w","x","y","z",","," "]#Lista de caracteres permitidos.
         if texto == "":#si es vacío.
             continue
         elif texto==" ":#si es solo un espacio.
@@ -45,6 +60,13 @@ def validarTextoCodificar():#validación para texto a codificar.
             else:#todo lo ingresado está en la lista de aceptados.(letras minusculas o ¬.)
                 return texto#devuelve el texto para procesarlo.
 def validarTextoDecodificar():#validación para texto a decodificar.
+    """
+    Función: Validar que el texto que se solicita cumpla con las restrucciones. Hasta que no se
+    ingrese de manera correcta el texto no se sale de la función.
+    Entradas: N/A. Dentro de la función se solicita un texto (Solo acepta letras y el caracter ¬).
+    Salidas:
+    -texto(str): Texto ingresado, este si cumple con las restricciones.
+    """
     while True:
         texto=input("Ingrese texto a decodificar(solo letras o el caracter ¬. No se aceptan tildes):")
         texto.lower()
@@ -67,6 +89,14 @@ def validarTextoDecodificar():#validación para texto a decodificar.
                 return texto#devuelve el texto para procesarlo.
 #Procesos
 def codificarCenit(texto):
+    """
+    Función: Codificar el texto en cenit polar.
+    Entrada:
+    -texto(str): Texto validado, debe ser letras (sin tilde y minúsculas)
+,espacios y comas.
+    Salida:
+    -codificado(str): Texto codificado en cenit polar.
+    """
     codificado=""#variable en blanco para guardar los cambios.
     for i in range(len(texto)):
         if texto[i]=="c":
@@ -97,6 +127,12 @@ def codificarCenit(texto):
             codificado+=texto[i]#otras letras que no se tienen que cambiar.
     return codificado
 def decodificarCenit(texto):
+    """Función: Decodificar el texto codificado en cenit polar.
+    Entrada:
+    -texto(str): Texto validado, debe ser letras (sin tilde y minúsculas) y el caracter ¬.
+    Salida:
+    -decodificado(str): Texto decodificado en cenit polar.
+    """
     decodificado=""#variable en blanco para guardar los cambios.
     for i in range(len(texto)):
         if texto[i]=="c":
