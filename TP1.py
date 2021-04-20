@@ -161,8 +161,6 @@ def decodificarCenit(texto):
         else:
             decodificado+=texto[i]#otras letras que no se tienen que cambiar.
     return decodificado
-#Código morse.
-#Entrada
 def iniciarCodigoMorse():
     """
     Función: Iniciar la códificación morse del texto a ingresar.
@@ -177,8 +175,8 @@ def iniciarCodigoMorse():
             eleccion=validarOpcion()
             if eleccion==1:#Codificar texto a código morse.
                 print("\n¡¡Ha seleccionado la opción para códificar un texto a código morse!!\n")
-                print("\nINSTRUCCIONES:\nEl texto a ingresar debe contener únicamente letras(minúsculas, no se acepta la ñ ni tildes), espacios o numeros.(no se otro \
-tipo de caracter especial).\n")
+                print("\nINSTRUCCIONES:\nEl texto a ingresar debe contener únicamente letras(mayúsculas, no se acepta la ñ ni tildes), espacios o numeros.(no se otro \
+tipo de caracter especial). El texto no puede empezar por espacio.\n")
                 texto=input("Ingrese texto a codificar: ")
                 if validarCodigoMorse(texto):#Validar es true, codifique.
                     morse=codificarMorse(texto)#guarda el codigo morse.
@@ -241,14 +239,13 @@ def validarCodigoMorse(texto):
     -True: Si el texto contiene solo letras minusculas, numeros y espacios.
     -False: Si el texto contiene un caracter diferente de letras minusculas, numeros y espacios.
     """
-    caracteresValidos=["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","0","1","2","3","4","5","6","7","8","9"," "]
-    if texto==" ":#Si es un espacio vacío devuelva False.
-        print("Debe ingresar texto.")
-        return False
-    if not texto:#Enter vacío.
+    caracteresValidos=[" ","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","0","1","2","3","4","5","6","7","8","9"]
+    if texto==" " or not texto:#Si es un espacio o vacío devuelva False.
         print("Debe ingresar texto.")
         return False
     for i in range(len(texto)):
+        if texto[0]==" ":
+            return False
         if texto[i] in caracteresValidos:
             continue
         else:
@@ -291,125 +288,88 @@ def codificarMorse(codificar):
     Salida: 
     -morse(str): Código morse del texto ingresado. 
     """
-    #Valor en morse de cada letra y número del alfabeto.
-    a=".-"
-    b="-..."
-    c="-.-."
-    d="-.."
-    e="."
-    f="..-."
-    g="--."
-    h="...."
-    i=".."
-    j=".---"
-    k="-.-"
-    l=".-.."
-    m="--"
-    n="-."
-    o="---"
-    p=".--."
-    q="--.-"
-    r=".-."
-    s="..."
-    t="-"
-    u="..-"
-    v="...-"
-    w=".--"
-    x="-..-"
-    y="-.--"
-    z="--.."
-    uno=".----"
-    dos="..---"
-    tres="...--"
-    cuatro="....-"
-    cinco="....."
-    seis="-...."
-    siete="--..."
-    ocho="---.."
-    nueve="----."
-    cero="-----"
     morse=""#para guardar la codificación.
     for contador in range(len(codificar)):
-        if codificar[contador]=="a":
-            morse+=a
-        elif codificar[contador]=="b":
-            morse+=b
-        elif codificar[contador]=="c":
-            morse+=c
-        elif codificar[contador]=="d":
-            morse+=d
-        elif codificar[contador]=="e":
-            morse+=e
-        elif codificar[contador]=="f":
-            morse+=f
-        elif codificar[contador]=="g":
-            morse+=g
-        elif codificar[contador]=="h":
-            morse+=h
-        elif codificar[contador]=="i":#error con la i, era porque el contador se llamaba i y les estaba intentando asignar el número al morse.
-            morse+=i
-        elif codificar[contador]=="j":
-            morse+=j
-        elif codificar[contador]=="k":
-            morse+=k
-        elif codificar[contador]=="l":
-            morse+=l
-        elif codificar[contador]=="m":
-            morse+=m
-        elif codificar[contador]=="n":
-            morse+=n
-        elif codificar[contador]=="o":
-            morse+=o
-        elif codificar[contador]=="p":
-            morse+=p
-        elif codificar[contador]=="q":
-            morse+=q
-        elif codificar[contador]=="r":
-            morse+=r
-        elif codificar[contador]=="s":
-            morse+=s
-        elif codificar[contador]=="t":
-            morse+=t
-        elif codificar[contador]=="u":
-            morse+=u
-        elif codificar[contador]=="v":
-            morse+=v
-        elif codificar[contador]=="w":
-            morse+=w
-        elif codificar[contador]=="x":
-            morse+=x
-        elif codificar[contador]=="y":
-            morse+=y
-        elif codificar[contador]=="z":
-            morse+=z
+        if codificar[contador]==" ":
+            continue
+        if codificar[contador]=="A":
+            morse+=".-"
+        elif codificar[contador]=="B":
+            morse+="-..."
+        elif codificar[contador]=="C":
+            morse+="-.-."
+        elif codificar[contador]=="D":
+            morse+="-.."
+        elif codificar[contador]=="E":
+            morse+="."
+        elif codificar[contador]=="F":
+            morse+="..-."
+        elif codificar[contador]=="G":
+            morse+="--."
+        elif codificar[contador]=="H":
+            morse+="...."
+        elif codificar[contador]=="I":#error con la i, era porque el contador se llamaba i y les estaba intentando asignar el número al morse.
+            morse+=".."
+        elif codificar[contador]=="J":
+            morse+=".---"
+        elif codificar[contador]=="K":
+            morse+="-.-"
+        elif codificar[contador]=="L":
+            morse+=".-.."
+        elif codificar[contador]=="M":
+            morse+="--"
+        elif codificar[contador]=="N":
+            morse+="-."
+        elif codificar[contador]=="O":
+            morse+="---"
+        elif codificar[contador]=="P":
+            morse+=".--."
+        elif codificar[contador]=="Q":
+            morse+="--.-"
+        elif codificar[contador]=="R":
+            morse+=".-."
+        elif codificar[contador]=="S":
+            morse+="..."
+        elif codificar[contador]=="T":
+            morse+="-"
+        elif codificar[contador]=="U":
+            morse+="..-"
+        elif codificar[contador]=="V":
+            morse+="...-"
+        elif codificar[contador]=="W":
+            morse+="-..-"
+        elif codificar[contador]=="X":
+            morse+="-..-"
+        elif codificar[contador]=="Y":
+            morse+="-.--"
+        elif codificar[contador]=="Z":
+            morse+="--.."
         elif codificar[contador]=="0":
-            morse+=cero
+            morse+="-----"
         elif codificar[contador]=="1":
-            morse+=uno
+            morse+=".----"
         elif codificar[contador]=="2":
-            morse+=dos
+            morse+="..---"
         elif codificar[contador]=="3":
-            morse+=tres
+            morse+="...--"
         elif codificar[contador]=="4":
-            morse+=cuatro
+            morse+="....-"
         elif codificar[contadori]=="5":
-            morse+=cinco
+            morse+="....."
         elif codificar[contador]=="6":
-            morse+=seis
+            morse+="-...."
         elif codificar[contador]=="7":
-            morse+=siete
+            morse+="--..."
         elif codificar[contador]=="8":
-            morse+=ocho
+            morse+="---.."
         elif codificar[contador]=="9":
-            morse+=nueve
+            morse+="----."
         if contador+1==len(codificar):#Si el que sigue es el total de len, o sea, ya no hay más porque el contador empezó en 0, salgase.
             break
         if codificar[contador+1]==" ":#si el que sigue es espacio pegue |.
             morse+="|"
-        elif morse[-1]=="|":#Si lo que tiene de último el morse es |, no pegue ^.
             continue
-        else:
-            morse+="^"#si no significa que es letra, pegue ^.
+        morse+="^"#si no, significa que es letra, pegue ^.
     return morse
 #proceso decodificar morse
 def decodificarMorse(morse):
@@ -430,57 +390,57 @@ def decodificarMorse(morse):
           #  texto+=" "#pegue un espacio
         if morse[i]=="^" or morse[i]=="|":#si es ^
             if codigo==".-":
-                texto+="a"
+                texto+="A"
             elif codigo=="-...":
-                texto+="b"
+                texto+="B"
             elif codigo=="-.-.":
-                texto+="c"
+                texto+="C"
             elif codigo=="-..":
-                texto+="d"
+                texto+="D"
             elif codigo==".":
-                texto+="e"
+                texto+="E"
             elif codigo=="..-.":
-                texto+="f"
+                texto+="F"
             elif codigo=="--.":
-                texto+="g"
+                texto+="G"
             elif codigo=="....":
-                texto+="h"
+                texto+="H"
             elif codigo=="..":
-                texto+="i"
+                texto+="I"
             elif codigo==".---":
-                texto+="j"
+                texto+="J"
             elif codigo=="-.-":
-                texto+="k"
+                texto+="K"
             elif codigo==".-..":
-                texto+="l"
+                texto+="L"
             elif codigo=="--":
-                texto+="m"
+                texto+="M"
             elif codigo=="-.":
-                texto+="n"
+                texto+="N"
             elif codigo=="---":
-                texto+="o"
+                texto+="O"
             elif codigo==".--.":
-                texto+="p"
+                texto+="P"
             elif codigo=="--.-":
-                texto+="q"
+                texto+="Q"
             elif codigo==".-.":
-                texto+="r"
+                texto+="R"
             elif codigo=="...":
-                texto+="s"
+                texto+="S"
             elif codigo=="-":
-                texto+="t"
+                texto+="T"
             elif codigo=="..-":
-                texto+="u"
+                texto+="U"
             elif codigo=="...-":
-                texto+="v"
+                texto+="V"
             elif codigo==".--":
-                texto+="w"
+                texto+="W"
             elif codigo=="-..-":
-                texto+="x"
+                texto+="X"
             elif codigo=="-.--":
-                texto+="y"
+                texto+="Y"
             elif codigo=="--..":
-                texto+="z"
+                texto+="Z"
             elif codigo==".----":
                 texto+="1"
             elif codigo=="..---":
@@ -508,6 +468,5 @@ def decodificarMorse(morse):
                 texto+=" "
             continue#siga sacando
     return texto
-#Programa principal
-cenitPolar()
+#cenitPolar()
 iniciarCodigoMorse()
