@@ -40,7 +40,7 @@ def validarTextoCodificar():#validación para texto a codificar.
     -texto(str): Texto ingresado, este si cumple con las restrucciones.
     """
     while True:
-        texto=input("Ingrese texto a codificar(solo letras, espacios, comas. No se aceptan tildes.):")
+        texto=input("Ingrese texto a codificar(solo letras minúsculas, espacios, comas. No se aceptan tildes.):")
         texto.lower()#para también trabajar con letras mayúsculas.
         aceptados=["a","b","c","d","e","f","g","h","i","j","k","l","m","n\
 ","ñ","o","p","q","r","s","t","u","v","w","x","y","z",","," "]#Lista de caracteres permitidos.
@@ -161,6 +161,8 @@ def decodificarCenit(texto):
         else:
             decodificado+=texto[i]#otras letras que no se tienen que cambiar.
     return decodificado
+#Código morse.
+#Entrada
 def iniciarCodigoMorse():
     """
     Función: Iniciar la códificación morse del texto a ingresar.
@@ -272,6 +274,14 @@ def validarDecodificarMorse(texto):
     if texto[0]=="^" or texto[0]=="|" or texto[-1]=="^" or texto[-1]=="|":#el primero y el último no pueden ser estos.
         print("Debe respetar las intrucciones.")
         return False
+    for j in range(len(texto)):
+        x=texto[j]
+        if j==len(texto)-1:
+            y=texto[j]
+        else:
+            y=texto[j+1]
+        if (x=="^" and y=="|") or (y=="^" and x=="|"):
+            return False
     for i in range(len(texto)):
         if texto[i] in caracteresValidos:
             continue
@@ -315,93 +325,26 @@ def decodificarMorse(morse):
     Salida:
     -texto(str): Texto decodificado.
     """
-    codigo=""#para ir sacando las letras, numeros, espacios.
-    texto=""
-    morse+="^"#Para poder incluir el último código que no se agarraría sin el ^
-    for i in range(len(morse)):
-        if morse[i]!="^" and morse[i]!="|":#es punto o guión
-            codigo+=morse[i]#peguelo
-        #if morse[i]=="|":#si es pipe 
-          #  texto+=" "#pegue un espacio
-        if morse[i]=="^" or morse[i]=="|":#si es ^
-            if codigo==".-":
-                texto+="A"
-            elif codigo=="-...":
-                texto+="B"
-            elif codigo=="-.-.":
-                texto+="C"
-            elif codigo=="-..":
-                texto+="D"
-            elif codigo==".":
-                texto+="E"
-            elif codigo=="..-.":
-                texto+="F"
-            elif codigo=="--.":
-                texto+="G"
-            elif codigo=="....":
-                texto+="H"
-            elif codigo=="..":
-                texto+="I"
-            elif codigo==".---":
-                texto+="J"
-            elif codigo=="-.-":
-                texto+="K"
-            elif codigo==".-..":
-                texto+="L"
-            elif codigo=="--":
-                texto+="M"
-            elif codigo=="-.":
-                texto+="N"
-            elif codigo=="---":
-                texto+="O"
-            elif codigo==".--.":
-                texto+="P"
-            elif codigo=="--.-":
-                texto+="Q"
-            elif codigo==".-.":
-                texto+="R"
-            elif codigo=="...":
-                texto+="S"
-            elif codigo=="-":
-                texto+="T"
-            elif codigo=="..-":
-                texto+="U"
-            elif codigo=="...-":
-                texto+="V"
-            elif codigo==".--":
-                texto+="W"
-            elif codigo=="-..-":
-                texto+="X"
-            elif codigo=="-.--":
-                texto+="Y"
-            elif codigo=="--..":
-                texto+="Z"
-            elif codigo==".----":
-                texto+="1"
-            elif codigo=="..---":
-                texto+="2"
-            elif codigo=="...--":
-                texto+="3"
-            elif codigo=="....-":
-                texto+="4"
-            elif codigo==".....":
-                texto+="5"
-            elif codigo=="-....":
-                texto+="6"
-            elif codigo=="--...":
-                texto+="7"
-            elif codigo=="---..":
-                texto+="8"
-            elif codigo=="----.":
-                texto+="9"
-            elif codigo=="-----":
-                texto+="0"
-            else:
-                return "Ha ingresado un código incorrecto."
-            codigo=""#no mover de arriba del |.
-            if morse[i]=="|":#antes de llegar aquí, ya se pegó la letra que tenía, ahora pega el espacio.
-                texto+=" "
-            continue#siga sacando
+    lista=[["A",".-"],["B","-..."],["C","-.-."],["D","-.."],["E","."],["F","..-."],["G","--."],["H","....\
+"],["I",".."],["J",".---"],["K","-.-"],["L",".-.."],["M","--"],["N","-."],["O","---"],["P",".--."],["Q","--.-"],["R",".-.\
+"],["S","..."],["T","-"],["U","..-"],["V","...-"],["W",".--"],["X","-..-"],["Y","-.--"],["Z","--.."],["0","-----\
+"],["1",".----"],["2","..---"],["3","...--"],["4","....-"],["5","....."],["6","-...."],["7","--..."],["8","---..\
+"],["9","----."],[" ","|"]]#lista de caracteres aceptados.
+    if morse[-1]!="^":
+        morse+="^"
+    texto=""#guarda el texto.
+    codigo=""#guarda los códigos morse.
+    for caracter in morse:#saca caracter
+        if caracter!="^" and caracter!="|":#Si el caracter que tiene es diferente de estos peguelo.
+            codigo+=caracter#pega morse de letra.
+            continue#continua con el siguiente caracter.
+        for sublista in lista:#compara morse de letra con los que están en la lista
+            if sublista[1]==codigo:#compara los el codigo con las sublistas.
+                texto+=sublista[0]
+                if caracter=="|":#si lo que tiene es | pegue un espacio.
+                    texto+=" "#pega espacio
+                codigo=""
     return texto
 #cenitPolar()
 iniciarCodigoMorse()
+
