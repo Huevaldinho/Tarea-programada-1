@@ -288,88 +288,23 @@ def codificarMorse(codificar):
     Salida: 
     -morse(str): Código morse del texto ingresado. 
     """
-    morse=""#para guardar la codificación.
-    for contador in range(len(codificar)):
-        if codificar[contador]==" ":
-            continue
-        if codificar[contador]=="A":
-            morse+=".-"
-        elif codificar[contador]=="B":
-            morse+="-..."
-        elif codificar[contador]=="C":
-            morse+="-.-."
-        elif codificar[contador]=="D":
-            morse+="-.."
-        elif codificar[contador]=="E":
-            morse+="."
-        elif codificar[contador]=="F":
-            morse+="..-."
-        elif codificar[contador]=="G":
-            morse+="--."
-        elif codificar[contador]=="H":
-            morse+="...."
-        elif codificar[contador]=="I":#error con la i, era porque el contador se llamaba i y les estaba intentando asignar el número al morse.
-            morse+=".."
-        elif codificar[contador]=="J":
-            morse+=".---"
-        elif codificar[contador]=="K":
-            morse+="-.-"
-        elif codificar[contador]=="L":
-            morse+=".-.."
-        elif codificar[contador]=="M":
-            morse+="--"
-        elif codificar[contador]=="N":
-            morse+="-."
-        elif codificar[contador]=="O":
-            morse+="---"
-        elif codificar[contador]=="P":
-            morse+=".--."
-        elif codificar[contador]=="Q":
-            morse+="--.-"
-        elif codificar[contador]=="R":
-            morse+=".-."
-        elif codificar[contador]=="S":
-            morse+="..."
-        elif codificar[contador]=="T":
-            morse+="-"
-        elif codificar[contador]=="U":
-            morse+="..-"
-        elif codificar[contador]=="V":
-            morse+="...-"
-        elif codificar[contador]=="W":
-            morse+="-..-"
-        elif codificar[contador]=="X":
-            morse+="-..-"
-        elif codificar[contador]=="Y":
-            morse+="-.--"
-        elif codificar[contador]=="Z":
-            morse+="--.."
-        elif codificar[contador]=="0":
-            morse+="-----"
-        elif codificar[contador]=="1":
-            morse+=".----"
-        elif codificar[contador]=="2":
-            morse+="..---"
-        elif codificar[contador]=="3":
-            morse+="...--"
-        elif codificar[contador]=="4":
-            morse+="....-"
-        elif codificar[contadori]=="5":
-            morse+="....."
-        elif codificar[contador]=="6":
-            morse+="-...."
-        elif codificar[contador]=="7":
-            morse+="--..."
-        elif codificar[contador]=="8":
-            morse+="---.."
-        elif codificar[contador]=="9":
-            morse+="----."
-        if contador+1==len(codificar):#Si el que sigue es el total de len, o sea, ya no hay más porque el contador empezó en 0, salgase.
-            break
-        if codificar[contador+1]==" ":#si el que sigue es espacio pegue |.
-            morse+="|"
-            continue
-        morse+="^"#si no, significa que es letra, pegue ^.
+    lista=[["A",".-"],["B","-..."],["C","-.."],["D","-.."],["E","."],["F","..-."],["G","--."],["H","....\
+"],["I",".."],["J",".---"],["K","-.-"],["L",".-.."],["M","--"],["N","-."],["O","---"],["P",".--."],["Q","--.-"],["R",".-.\
+"],["S","..."],["T","-"],["U","..-"],["V","...-"],["W",".--"],["X","-..-"],["Y","-.--"],["Z","--.."],["0","-----\
+"],["1",".----"],["2","..---"],["3","...--"],["4","....-"],["5","....."],["6","-...."],["7","--..."],["8","---..\
+"],["9","----."],[" ","|"]]#lista de caracteres aceptados.
+    morse=""
+    for letra in codificar:#saca letra
+        for sublista in lista:#ciclo recorre lista.
+            if letra==" " and morse[-1]=="^":#quita los techos antes del espacio.
+                morse=morse[0:-1]
+                continue
+            if sublista[0]==letra:
+                morse+=sublista[1]
+                if sublista[1]=="|":#no pone techo despues de |
+                    continue
+                morse+="^"
+    morse=morse[0:-1]#quita el último techo.
     return morse
 #proceso decodificar morse
 def decodificarMorse(morse):
