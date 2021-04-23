@@ -504,8 +504,6 @@ def codificarMorse(codificar):
                 continue#pasa a la siguiente sublista, porque no ha cambiado el pipe.
             if sublista[0]==letra:#saca el valor 0 de la sublista y compara la letra.
                 morse+=sublista[1]#pega el valor del binario de la sublista.
-                print(letra)
-                print(sublista[1])
                 if sublista[1]=="|":#no pone techo despues de |
                     continue#pasa a la siguiente letra.
                 morse+="^"#le pega techo al morse.

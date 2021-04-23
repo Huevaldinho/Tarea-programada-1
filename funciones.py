@@ -1,7 +1,7 @@
-#Elaborado por: Felipe Obando Arrieta y Sebastián Bermúdez
-#Fecha de creación: 24/03/2021 1:15 PM
-#Última modificación: 27/03/2021 5:15 PM
-#Versión: 3.9.2 Windows 10.
+#Elaborado por: Felipe Obando Arrieta
+#Fecha de creación: 28/03/2021 7:04 PM
+#Última modificación: 
+#Versión: 3.9.2 Windows 10
 
 
 #importación de librerías
@@ -370,3 +370,314 @@ def produccionFabricas (nFabricas):
         print("La fábrica que más produjo en el año es: "+str(clave)+" con una producción de $ "+str(mayoprodu))
     return""
     produccionFabricas()
+
+
+#                                                  TAREA STR
+#Elaborado por: Felipe Obando Arrieta
+#Fecha de creación: 28/03/2021 7:04 PM
+#Última modificación: 31/03/2021 4:25 PM
+#Versión: 3.9.2 Windows 10
+
+#Función Validar número de la suerte
+def validarNumeroSuerte():  #Obliga al usuario a ingresar al menos un caracter.
+    """
+    Función: Validar que el usuario ingrese al menos un caracter.
+    Entrada: Texto(str): Texto que el usuario ingresa.
+    Salida: Llama a la función numeroSuerte.
+    """
+    texto=input("Digite su frase: ")
+    if not texto:
+        print("Debe digitar una frase")
+        validarNumeroSuerte()
+        return ""
+    numeroSuerte(texto)
+    return ""
+#1. El número de la suerte
+def numeroSuerte(frase):
+    """
+    Función: Determinar el número de la suerte del usuario de acuerdo con la cantidad de números que ingresó.
+    Entradas: 
+    -frase(str): Frase ingresada en la función valiudarNumeroSuerte.
+    Salida: Número(int): Muestra el número de la suerte del usuario.
+    """
+    total=len(frase) #Saca el total de caracteres del texto ingresado.
+    suma=0
+    c=0 #Contador en 0 para que empiece en el primer caracter
+    noSonNumero=0
+    pues=""
+    for c in range (total):
+        caracter = frase[c] #Saca el caracter en el orden con el que avanza el contador. O sea, saca todos los caracteres del texto.
+        try:
+            y=int(caracter) #Intenta convertir el caracter en entero.
+            if y==1:
+                suma=suma+1 #Acumulado de todos los numeros.
+                if suma==1:
+                    pues=pues+"1" #Si el primer número es 1 no entra aqui para que no le aparezca + al frente.
+                else:    
+                    pues=pues+"+"+"1" #Si entra en un if se le va a pegar el número al str.
+            elif y==2:
+                suma=suma+2
+                if suma==2:
+                    pues=pues+"2"
+                else:
+                    pues=pues+"+"+"2"
+            elif y==3:
+                suma=suma+3
+                if suma==3:
+                    pues=pues+"3"
+                else:    
+                    pues=pues+"+"+"3"
+            elif y==4:
+                suma=suma+4
+                if suma==4:
+                    pues=pues+"4"
+                else:
+                    pues=pues+"+"+"4"
+            elif y==5:
+                suma=suma+5
+                if suma==5:
+                    pues=pues+"5"
+                else:
+                    pues=pues+"+"+"5"
+            elif y==6:
+                suma=suma+6
+                pues=pues+"+"+"6"
+            elif y==7:
+                suma=suma+7
+                if suma==7:
+                    pues=pues+"7"
+                else:
+                    pues=pues+"+"+"7"
+            elif y==8:
+                suma=suma+8
+                if suma==8:
+                    pues=pues+"8"
+                else:
+                    pues=pues+"+"+"8"
+            elif y==9:
+                suma=suma+9
+                if suma==9:
+                    pues=pues+"9"
+                else:
+                    pues=pues+"+"+"9"
+            elif y==0:
+                suma=suma+0 #El número de la suerte es 0 si no ingresa números o si todos los ingresados son 0.
+                if suma==0:
+                    pues=pues+"0+" #
+                else:
+                    pues=pues+"+"+"0"
+        except:
+            noSonNumero=noSonNumero+1 #Relleno para que el except tenga algo y no de error.
+    if suma==0:
+        print("Su número de la suerte es: 0")
+        return ""
+    print("Su número de la suerte es el : ",str(suma),", pues se suma ",pues)
+    return ""
+#Función validar vocales consonantes
+def validarVocalesConsonantes():
+    """
+    Función: Validar que se ingrese una palabra para la función vocalesConsonantes.
+    Entradas: Se debe ingresar una palabra.
+    Salidas: Se invoca la función vocalesConsonantes.
+    """
+    palabra=input("Ingrese una palabra: ")
+    if not palabra:
+        print("Debe ingresar una palabra")
+        validarVocalesConsonantes()
+        return ""
+    vocalesConsonantes(palabra)
+    return ""
+#2. Cantidad de vocales y consonantes:
+def vocalesConsonantes(palabra):
+    """
+    Función: Cuenta la cantidad de vocales de una palabra.
+    Entrada: 
+    -palabra(str): Palabra ingresada en validarVocalesConsonantes.
+    Salidas: Muestra la cantidad de vocales de la palabra.
+    """
+    total=len(palabra)
+    contadorA=0
+    contadorE=0
+    contadorI=0
+    contadorO=0
+    contadorU=0
+    otrosCaracteres=0
+    i=0
+    for i in range(total):
+        caracter = palabra[i]
+        if caracter=="a" or caracter=="A":
+            contadorA=contadorA+1
+        elif caracter=="e" or caracter=="E":
+            contadorE=contadorE+1
+        elif caracter=="i" or caracter=="I":
+            contadorI=contadorI+1
+        elif caracter=="o" or caracter=="O":
+            contadorO=contadorO+1
+        elif caracter=="u" or caracter=="U":
+            contadorU=contadorU+1
+        else:
+            otrosCaracteres=otrosCaracteres+1
+    suma= (total-otrosCaracteres)
+    print ("Cantidad de a: "+str(contadorA))
+    print ("Cantidad de e: "+str(contadorE))
+    print ("Cantidad de i: "+str(contadorI))
+    print ("Cantidad de o: "+str(contadorO))
+    print ("Cantidad de u: "+str(contadorU))
+    print ("Cantidad de consonates: "+str(suma))
+    return ""
+#Función validar palabra palindroma    
+def validarPalabraPalindroma():
+    """
+    Función: Validar que se ingrese una palabra.
+    Entrada: Se debe ingresar una palabra.
+    Salida: Se invoca a la función palabraPalindroma.
+    """
+    palabra=input("Ingrese una palabra: ")
+    if not palabra:
+        print("Debe ingresar una palabra")
+        validarPalabraPalindroma()
+        return ""
+    if len(palabra)<=2:
+        print("Debe ingresar una palabra con mínimo tres letras.")
+        validarPalabraPalindroma()
+        return""
+    if palabraPalindroma(palabra)==True:
+        print("Si es palíndroma")
+        return ""
+    else: 
+        print("No es palíndroma")
+        return ""
+#3. La palabra es palíndroma:
+def palabraPalindroma(palabra):
+    """
+    Función: Retornar verdadero si la palabra si es palindroma o falso si no lo es.
+    Entradas: Ingresa palabra.
+    Salidas: True si al invocar la función cadenaEspejo es igual a la palabra ingresada o falso si no.
+    """
+    if str(palabra) == str(cadenaEspejo(palabra)):  #No está agarrando la cadena
+        return True
+    return False
+#Función validar comer vocales
+def validarComeVocales():
+    """
+    Función: Validar una palabra
+    Entrada: Se ingresa una palabra.
+    Salida: Se invoca la función comeVocales.
+    """
+    palabra=str(input("Ingrese una palabra: "))
+    if not palabra:
+        print("Debe ingresar una palabra. Solo letras.")
+        validarComeVocales()
+    comeVocales(palabra)
+    return ""
+#4. Reconociendo las vocales:
+def comeVocales(palabra):
+    """
+    Función: Quitar las vocales de una oración.
+    Entradas: 
+    -Oración(str): Oración a la que se le van a quitar las vocales.
+    Salidas: Oración sin vocales.
+    """
+    palabrasinVocal=""
+    for vocales in palabra:
+        if vocales=='A' or vocales=="a" or vocales=="á":
+            continue #Si entra a algún ciclo no pega la letra en palabra sinVocal, si no que pasa a la siguiente letra. Por el continue.
+        elif vocales=='E' or vocales=="e" or vocales=="é":
+            continue
+        elif vocales=='I' or vocales =="i" or vocales=="í":
+            continue
+        elif vocales=='O' or vocales =="o" or vocales=="ó":
+            continue
+        elif vocales=='U' or vocales == "u" or vocales=="ú":
+            continue
+        palabrasinVocal+=vocales #Si llega aquí es porque la letra no es vocal, entonces la pega.
+    print(palabrasinVocal)
+    return ""
+#Función validar cadena espejo
+def validarCadenaEspejo():
+    """
+    Función: Validar una cadena de caracteres.
+    Entrada: Solicita una palabra.
+    Salida: Invoca a la función cadenaEspejo.
+    """
+    palabra=str(input("Ingrese una palabra: "))
+    if not palabra:
+        print("Debe ingresar una palabra. Solo letras.")
+        validarCadenaEspejo()
+        return ""
+    cadenaEspejo(palabra)
+    return ""
+#5. Cadena espejo:
+def cadenaEspejo(palabra):
+    """
+    Función: Darle vuelta a una palabra.
+    Entrada:
+    -palabra(str): Palabra a la cual se le va a dar vuelta.
+    Salidas: 
+    -salida(str): Palabra invertida.
+    """
+    invertida = "" #Espacio en blanco
+    for letra in palabra: 
+        invertida =  letra + invertida #Pega la letra que agarró antes de lo que ya tenía.
+    #print("Palabra invertida: "+invertida)
+    return invertida
+#Función validar analziador texto
+def validarAnalizadorTexto():
+    """
+    Función: Valida un el texto que se va a usar en la función analizadorTexto.
+    Entrada: Solicita un texto.
+    Salida: Invoca a la función analizadorTexto.
+    """
+    texto=input("Ingrese un texto: ")
+    if not texto:
+        print("Debe ingresar un texto")
+        validarAnalizadorTexto()
+    analizadorTexto(texto)
+    return ""
+#6. Analizador de texto:
+def analizadorTexto(texto):
+    """
+    Función: Analiza un texto, cuenta cuantas palabras y caracteres tiene.
+    Entrada:
+    -texto: Texto a analizar.
+    Salidas: 
+    -Cantidad de palabras.
+    -Cantidad de caracteres.
+    """
+    caracteres= len(texto) #Cantidad de caracteres.
+    #para el conador de palabras ocupo contar la cantidad de espacios y sumarle uno para tener la cantidad de palabras.
+    i = 0
+    contadorEspacios=0
+    for i in range(caracteres):
+        caracter1=texto[i]
+        if caracter1==" ": #Limpiar que no hayan dos espacios seguidos.
+            caracter2=texto[i+1]
+            if caracter1 == caracter2: #Compara el caracter que saco antes con el siguiente para ver si son dos espacios seguidos.
+                print("No se permiten dobles espacios.")
+                validarAnalizadorTexto()
+                return ""
+            contadorEspacios+=1
+    palabras= contadorEspacios+1
+    print("Cantidad de palabras= "+str(palabras))
+    print("Cantidad de caracteres= "+str(caracteres))
+    return ""
+def alreves(numero):
+    """
+    Función: Darle la vuelta a un str.
+    Entrada:
+    -texto(str): Texto al que se le va a dar la vuelta.
+    Salidas:
+    -alreves(str): Texto al reves.
+    """
+    for i in numero:
+        alreves = i+alreves
+    return alreves
+def encontrarAlmenosUnCero(pnumero):
+    while pnumero<=0:
+        if pnumero==0:
+            return True
+            break
+        else:
+            return False
+        pnumero=pnumero//10
+    return ""
