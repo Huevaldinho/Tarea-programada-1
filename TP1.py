@@ -345,6 +345,87 @@ def decodificarMorse(morse):
                     texto+=" "#pega espacio
                 codigo=""
     return texto
+import re
+#Sufamelico
+#Entrada
+def iniciarSufamelico():
+    """
+    Función: Iniciar el proceso de codificación/decodificación Sufamelica.
+    Entrada: N/A.
+    Salida: N/A.
+    """
+    while True:#ciclo para obligar a que ingrese datos correctamente.
+        try:#captura error vacío en opción.
+            opcion=int(input("\nIngrese 1 para codificar o 2 para decodificar: "))#pide opción
+            if opcion==1:#no se separa la validación porque el principal objetivo es el texto, las opciones son solo 2, hasta que no se ingrese bien no pasa.
+                texto=input("\nIngrese texto a codificar (debe tener letras mayúsculas, espacios o comas)\
+ no se acepta ningún otro tipo de caracter especial, incluyendo a la ñ y tildes: ")#mensaje para cuando esa 1, codificar
+            elif opcion==2:#realmente las opciones son solo para el mensaje porque codifica/decodifica la misma función.
+                texto=input("\nIngrese texto a decodificar(debe tener letras mayúsculas, espacios o comas)\
+ no se acepta ningún otro tipo de caracter especial, incluyendo a la ñ y tildes: ")#mensaje para cuando esa 2, decodificar
+            else:
+                print("\nIntente de nuevo.\n")#otro número
+                continue
+        except:#si es vacío u otra cosa.
+            print("\nIntente de nuevo.\n")
+            continue#lo devuelve.
+        if validarSufamelico(texto):#si ingresó 1 o 2 pide un texto y viene aqui para validar el texto.
+            procesarSufamelico(texto)#si el texto es válido pasa a codificar/decodificar.
+            return ""
+        else:
+            print("\nSiga las instrucciones para ingresar el texto.\n")#ingresó un texto inválido.
+            continue#lo devuelve.
+#Validar
+def validarSufamelico(texto):
+    """
+    Función: Validar que el parámetro sea un texto con letra mayúsculas de la A-Z (no acepta caracteres especiales),
+    puede contener espacios y comas.
+    Entrada:
+    -texto(str): Texto a validar.
+    Salida:
+    -True si cumple las condiciones.
+    -False si no cumple las condiciones.
+    """
+    if texto==" ":#si es un espacio en blanco devuele False.
+        print("Debe ingresar un texto.")
+        return False
+    if re.match("^[\sA-Z,]+$",texto):#Valida que solo contenga letra mayúsculas, espacio o comas.
+        return True#si cumple.
+    else:
+        return False
+#Proceso codifica/decodifica
+def procesarSufamelico(texto):
+    """
+    Función: Codificar/decodificar el texto a Sufamelico.
+    Entrada: 
+    -texto(str): Texto a codificar/decodificar.
+    Salida: N/A
+    """
+    lista=[["S","U"],["U","S"],["F","A"],["A","F"],["M","E"],["E","M"],["L","I"],["I","L"],["C","O"],["O","C"],]#lista para ir cambiando letras.
+    todo=["S","U","F","A","M","E","L","I","C","O"]#si la letra no está aqui no va a cambiarlo.
+    final=""#codificado/decodificado
+    for letra in texto:#saca letra del texto para comparar con todas las sublistas.
+        for sublista in lista: #saca todas las sublistas para buscar la letra en la posición 0 para cambiarla por la 1.
+            if not letra in todo:#si la letra que tiene no es alguna de las que cambia, peguela y siga con la otra letra.
+                final+=letra#pega letra que no tiene otra para cambiar.
+                break#pasa a la siguiete letra del for.
+            elif sublista[0]==letra:#si la letra que tiene coincide con alguna sublista en la posición 0.
+                final+=sublista[1]#pegue la letra 1 de la sublista.
+                break#pase a la siguiente
+    imprimirSufamelico(final)#llama la función que imprime.
+    return ""
+#Salida
+def imprimirSufamelico(texto):
+    """
+    Función: Mostar el resultado de la codificación/decodificación del texto.
+    Entrada:
+    -texto(str): Texto codificado/decodificado.
+    Salida: N/A.
+    """
+    print("Su texto es: "+texto)
+    return ""
+#Programa principal.
 #cenitPolar()
-iniciarCodigoMorse()
+#iniciarCodigoMorse()
+#iniciarSufamelico()
 
