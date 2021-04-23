@@ -1,6 +1,199 @@
+#Elaborado por: Felipe Obando y Sebastián Bermúdez
+#Fecha de creación: 
+#Última modificación: 
+#Versión: 3.9.2
+
 #Importación
 import re
-
+#Funciones universales
+def validarTextoCodificarUniversal(): #esta funcion se puede usar para todos las codificaciones
+    aceptados=["a","b","c","d","e","f","g","h","i","j","k","l","m","n","ñ","o","p","q","r","s","t","u","v","w","x","y","z"," "]
+    return validarTextoUniversal(aceptados)
+def validarTextoUniversal(aceptados):#validación para texto a codificar o decodificar que es universal.
+    while True:
+        texto=input("Ingrese texto a analizar según las instrucciones de cifrado: ")
+        texto=texto.lower()#para también trabajar con letras mayúsculas.
+        if texto == "":#si es vacío.
+            continue
+        elif texto==" ":#si es solo un espacio.
+            continue 
+        else:
+            valido=True #variable para contar si existe algún caracter que no es aceptado(numeros, puntos, etc...)
+            for i in range(len(texto)):     #saca cada uno de los caracteres
+                if texto[i] in aceptados:       #compara el caracter con la lista de aceptados.
+                    continue        #si está bien pasa al siguiente.
+                else: 
+                    valido=False      #si no está en la lista anota en el contador un 1  para posteriormente saber si hay que ingresar de nuevo el texto.
+                    break       #se sale del ciclo for porque ya encontró algo malo.
+            if valido==False: #si encontró algo malo lo devuelve al while, a ingresar de nuevo el texto.
+                print("\nSu texto no es válido, intente de nuevo.\n")
+                continue
+            else:
+                return texto
+                return texto
+#Murcielago
+def murcielago():
+    print(30*"•")
+    print("\n"+"Código Murciélago".center(30," ")+"\n")
+    print(30*"•")
+    while True:
+        try:
+            opcion=int(input("\nIngrese 1 para codificar o 2 para decodificar: "))#obliga a ingresar 1 o 2 por el while try.
+            if opcion==1:
+                texto=validarTextoCodificarUniversal()#validar el texto a codificar.
+                print("\nTexto codificado: \""+codificarMurcielago(texto)+"\"")#llama la codificación e imprimer el return de la función.
+                return ""
+            elif opcion==2:
+                texto=validarTextoDecodificarMurcielago()#validar el texto a decodificar.
+                print("\nTexto decodificado: \""+decodificarMurcielago(texto)+"\"")#llama la codificación e imprimer el return de la función.
+                return ""
+            else:#numero mayor a 1.
+                print("Intente de nuevo, según las instrucciones especificadas.\n1. Codificar.\n2. Decodificar.")
+                continue
+        except:#cualquier caracter diferente de numero.
+            print("Intente de nuevo, según las instrucciones especificadas.\n1. Codificar.\n2. Decodificar.")
+            continue
+#Validación
+def validarTextoDecodificarMurcielago():
+    aceptados=["7","b","3","d","5","f","8","h","4","j","k","6","0","n","ñ","9","p","q","2","s","t","1","v","w","x","y","z","*"]
+    return validarTextoUniversal(aceptados)
+#Proceso
+def codificarMurcielago(texto):
+    codificado=""#variable en blanco para guardar los cambios.
+    for i in range(len(texto)):
+        if texto[i]=="m":
+            codificado+="0"
+        elif texto[i]=="u":
+            codificado+="1"
+        elif texto[i]=="r":
+            codificado+="2"
+        elif texto[i]=="c":
+            codificado+="3"
+        elif texto[i]=="i":
+            codificado+="4"
+        elif texto[i]=="e":
+            codificado+="5"
+        elif texto[i]=="l":
+            codificado+="6"
+        elif texto[i]=="a":
+            codificado+="7"
+        elif texto[i]=="g":
+            codificado+="8"
+        elif texto[i]=="o":
+            codificado+="9"
+        elif texto[i]==" ":#espacio.
+            codificado+="*"
+        else:
+            codificado+=texto[i]#otras letras que no se tienen que cambiar.
+    return codificado.upper()
+def decodificarMurcielago(texto):
+    codificado=""#variable en blanco para guardar los cambios.
+    for i in range(len(texto)):
+        if texto[i]=="0":
+            codificado+="m"
+        elif texto[i]=="1":
+            codificado+="u"
+        elif texto[i]=="2":
+            codificado+="r"
+        elif texto[i]=="3":
+            codificado+="c"
+        elif texto[i]=="4":
+            codificado+="i"
+        elif texto[i]=="5":
+            codificado+="e"
+        elif texto[i]=="6":
+            codificado+="l"
+        elif texto[i]=="7":
+            codificado+="a"
+        elif texto[i]=="8":
+            codificado+="g"
+        elif texto[i]=="9":
+            codificado+="o"
+        elif texto[i]=="*":#espacio.
+            codificado+=" "
+        else:
+            codificado+=texto[i]#otras letras que no se tienen que cambiar.
+    return codificado.upper()
+#Eucalipto
+#entrada
+def eucalipto():
+    print(30*"•")
+    print("\n"+"Código Eucalipto".center(30," ")+"\n")
+    print(30*"•")
+    while True:
+        try:
+            opcion=int(input("\nIngrese 1 para codificar o 2 para decodificar: "))#obliga a ingresar 1 o 2 por el while try.
+            if opcion==1:
+                texto=validarTextoCodificarUniversal()#validar el texto a codificar.
+                print("\nTexto codificado: \""+codificarEucalipto(texto)+"\"")#llama la codificación e imprimer el return de la función.
+                return ""
+            elif opcion==2:
+                texto=validarTextoDecodificarEucalipto()#validar el texto a decodificar.
+                print("\nTexto decodificado: \""+decodificarEucalipto(texto)+"\"")#llama la codificación e imprimer el return de la función.
+                return ""
+            else:#numero mayor a 1.
+                print("Intente de nuevo, según las instrucciones especificadas.\n1. Codificar.\n2. Decodificar.")
+                continue
+        except:#cualquier caracter diferente de numero.
+            print("Intente de nuevo, según las instrucciones especificadas.\n1. Codificar.\n2. Decodificar.")
+            continue
+#validar
+def validarTextoDecodificarEucalipto():
+    aceptados=["4","b","3","d","1","f","g","h","6","j","k","5","m","n","ñ","9","7","q","r","s","8","2","v","w","x","y","z","°"]
+    return validarTextoUniversal(aceptados)
+#proceso
+def codificarEucalipto(texto):
+    codificado=""#variable en blanco para guardar los cambios.
+    for i in range(len(texto)):
+        if texto[i]=="e":
+            codificado+="1"
+        elif texto[i]=="u":
+            codificado+="2"
+        elif texto[i]=="c":
+            codificado+="3"
+        elif texto[i]=="a":
+            codificado+="4"
+        elif texto[i]=="l":
+            codificado+="5"
+        elif texto[i]=="i":
+            codificado+="6"
+        elif texto[i]=="p":
+            codificado+="7"
+        elif texto[i]=="t":
+            codificado+="8"
+        elif texto[i]=="o":
+            codificado+="9"
+        elif texto[i]==" ":#espacio.
+            codificado+="°"
+        else:
+            codificado+=texto[i]#otras letras que no se tienen que cambiar.
+    return codificado.upper()
+def decodificarEucalipto(texto):
+    codificado=""#variable en blanco para guardar los cambios.
+    for i in range(len(texto)):
+        if texto[i]=="1":
+            codificado+="e"
+        elif texto[i]=="2":
+            codificado+="u"
+        elif texto[i]=="3":
+            codificado+="c"
+        elif texto[i]=="4":
+            codificado+="a"
+        elif texto[i]=="5":
+            codificado+="l"
+        elif texto[i]=="6":
+            codificado+="i"
+        elif texto[i]=="7":
+            codificado+="p"
+        elif texto[i]=="8":
+            codificado+="t"
+        elif texto[i]=="9":
+            codificado+="o"
+        elif texto[i]=="°":#espacio.
+            codificado+=" "
+        else:
+            codificado+=texto[i]#otras letras que no se tienen que cambiar.
+    return codificado.upper()
 #Cenit polar
 #Entradas/salidas
 def cenitPolar():
@@ -307,13 +500,15 @@ def codificarMorse(codificar):
     for letra in codificar:#saca letra
         for sublista in lista:#ciclo recorre lista.
             if letra==" " and morse[-1]=="^":#quita los techos antes del espacio.
-                morse=morse[0:-1]
-                continue
-            if sublista[0]==letra:
-                morse+=sublista[1]
+                morse=morse[0:-1]#quita el techito del morse que está antes del espacio.
+                continue#pasa a la siguiente sublista, porque no ha cambiado el pipe.
+            if sublista[0]==letra:#saca el valor 0 de la sublista y compara la letra.
+                morse+=sublista[1]#pega el valor del binario de la sublista.
+                print(letra)
+                print(sublista[1])
                 if sublista[1]=="|":#no pone techo despues de |
-                    continue
-                morse+="^"
+                    continue#pasa a la siguiente letra.
+                morse+="^"#le pega techo al morse.
     morse=morse[0:-1]#quita el último techo.
     return morse
 #proceso decodificar morse
@@ -345,7 +540,6 @@ def decodificarMorse(morse):
                     texto+=" "#pega espacio
                 codigo=""
     return texto
-import re
 #Sufamelico
 #Entrada
 def iniciarSufamelico():
@@ -425,7 +619,8 @@ def imprimirSufamelico(texto):
     print("Su texto es: "+texto)
     return ""
 #Programa principal.
+#eucalipto()
+#murcielago()
 #cenitPolar()
 #iniciarCodigoMorse()
 #iniciarSufamelico()
-
