@@ -237,11 +237,13 @@ def iniciarSufamelico():
             opcion=int(input("\nIngrese 1 para codificar o 2 para decodificar: "))#obliga a ingresar 1 o 2 por el while try.
             if opcion==1:
                 texto=validarTextoCodificarUniversal()#validar el texto a codificar.
+                texto=texto.upper()
                 print("\nTexto codificado: \""+procesarSufamelico(texto)+"\"")#llama la codificación e imprimer el return de la función.
                 annadirBitacora("Sufamélico-Cod",texto,procesarSufamelico(texto))
                 return ""
             elif opcion==2:
                 texto=validarTextoUniversal()#validar el texto a codificar.
+                texto=texto.upper()
                 print("\nTexto decodificado: \""+procesarSufamelico(texto)+"\"")#llama la codificación e imprimer el return de la función.
                 annadirBitacora("Sufamélico-Cod",texto,procesarSufamelico(texto))
                 return ""
