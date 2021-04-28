@@ -1,6 +1,6 @@
-#Elaborado por: Felipe Obando y Sebastián Bermúdez
-#Fecha de creación: 
-#Última modificación: 
+#Elaborado por: Sebastián Bermúdez Acuña y Felipe Obando Arrieta
+#Fecha de Creación: 12/04/21 7:43 PM
+#Fecha de última Modificación: XX/XX/XX X:XXpm 
 #Versión: 3.9.2
 
 #Importación
@@ -604,8 +604,7 @@ def procesarSufamelico(texto):
             elif sublista[0]==letra:#si la letra que tiene coincide con alguna sublista en la posición 0.
                 final+=sublista[1]#pegue la letra 1 de la sublista.
                 break#pase a la siguiente
-    imprimirSufamelico(final)#llama la función que imprime.
-    return ""
+    return final
 #Salida
 def imprimirSufamelico(texto):
     """
