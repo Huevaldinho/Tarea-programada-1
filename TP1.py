@@ -197,6 +197,7 @@ def decodificarEucalipto(texto):
 #Cenit polar
 #Entradas/salidas
 def cenitPolar():
+<<<<<<< Updated upstream
     """
     Función: Solicitar opciones: codificar o decodificar Cenit Polar.
     Entradas: N/A. Dentro de la función se solicita 1 o 2, para codificar o decodificar
@@ -207,6 +208,12 @@ def cenitPolar():
     print("\nCenit Polar\n")
     print("........................")
     while True:#Obliga ingresar 1 o 2.
+=======
+    print("\n........................\n")
+    print("Cenit Polar".center(24," "))
+    print("\n........................\n")
+    while True:
+>>>>>>> Stashed changes
         try:
             opcion=int(input("Ingrese 1 para codificar o 2 para decodificar: "))#obliga a ingresar 1 o 2 por el while try.
             if opcion==1:
@@ -233,16 +240,20 @@ def validarTextoCodificar():#validación para texto a codificar.
     -texto(str): Texto ingresado, este si cumple con las restrucciones.
     """
     while True:
+<<<<<<< Updated upstream
         texto=input("Ingrese texto a codificar(solo letras minúsculas, espacios, comas. No se aceptan tildes.):")
+=======
+        texto=input("Ingrese texto a codificar(solo letras, espacios, comas. No se aceptan tildes.): ")
+>>>>>>> Stashed changes
         texto.lower()#para también trabajar con letras mayúsculas.
         aceptados=["a","b","c","d","e","f","g","h","i","j","k","l","m","n\
 ","ñ","o","p","q","r","s","t","u","v","w","x","y","z",","," "]#Lista de caracteres permitidos.
         if texto == "":#si es vacío.
             continue
         elif texto==" ":#si es solo un espacio.
-            continue 
+            continue
         else:
-            algo=0#varaible para contar si existe algún caracter que no es aceptado(numeros, puntos, etc...)
+            algo=0#variable para contar si existe algún caracter que no es aceptado(numeros, puntos, etc...)
             for i in range(len(texto)):#saca cada uno de los caracteres
                 if texto[i] in aceptados:#compara el caracter con la lista de aceptados.
                     continue#si está bien pasa al siguiente.
@@ -262,7 +273,7 @@ def validarTextoDecodificar():#validación para texto a decodificar.
     -texto(str): Texto ingresado, este si cumple con las restricciones.
     """
     while True:
-        texto=input("Ingrese texto a decodificar(solo letras o el caracter ¬. No se aceptan tildes):")
+        texto=input("Ingrese texto a decodificar(solo letras o el caracter ¬. No se aceptan tildes): ")
         texto.lower()
         aceptados=["a","b","c","d","e","f","g","h","i","j","k","l","m","n","ñ","o","p","q","r","s","t","u","v","w","x","y","z","¬"]
         if texto == "":#si es vacío.

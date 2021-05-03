@@ -711,6 +711,13 @@ import re
 from datetime import datetime
 #Proceso
 def codificarMurcielago(texto):
+    """
+    Función: codificar el texto en código murciélago.
+    Entrada:
+    -texto(str): Texto validado, debe ser letras (sin tilde y minúsculas) y el caracter ¬.
+    Salida:
+    -codificado(str): Texto decodificado en código murcielago.
+    """
     codificado=""#variable en blanco para guardar los cambios.
     for i in range(len(texto)):
         if texto[i]=="m":
@@ -739,6 +746,13 @@ def codificarMurcielago(texto):
             codificado+=texto[i]#otras letras que no se tienen que cambiar.
     return codificado.upper()
 def decodificarMurcielago(texto):
+    """
+    Función: Decodificar el texto codificado en código murciélago.
+    Entrada:
+    -texto(str): Texto validado, debe ser letras (sin tilde y minúsculas) y el caracter ¬.
+    Salida:
+    -decodificado(str): Texto decodificado en código murcielago.
+    """
     codificado=""#variable en blanco para guardar los cambios.
     for i in range(len(texto)):
         if texto[i]=="0":
@@ -767,6 +781,7 @@ def decodificarMurcielago(texto):
             codificado+=texto[i]#otras letras que no se tienen que cambiar.
     return codificado.upper()
 def codificarEucalipto(texto):
+    
     codificado=""#variable en blanco para guardar los cambios.
     for i in range(len(texto)):
         if texto[i]=="e":
@@ -793,6 +808,13 @@ def codificarEucalipto(texto):
             codificado+=texto[i]#otras letras que no se tienen que cambiar.
     return codificado.upper()
 def decodificarEucalipto(texto):
+    """
+    Función: Decodificar el texto codificado en código eucalipto.
+    Entrada:
+    -texto(str): Texto validado, debe ser letras (sin tilde y minúsculas) y el caracter ¬.
+    Salida:
+    -decodificado(str): Texto decodificado en código eucalipto.
+    """
     codificado=""#variable en blanco para guardar los cambios.
     for i in range(len(texto)):
         if texto[i]=="1":
@@ -856,7 +878,8 @@ def codificarCenit(texto):
             codificado+=texto[i]#otras letras que no se tienen que cambiar.
     return codificado
 def decodificarCenit(texto):
-    """Función: Decodificar el texto codificado en cenit polar.
+    """
+    Función: Decodificar el texto codificado en cenit polar.
     Entrada:
     -texto(str): Texto validado, debe ser letras (sin tilde y minúsculas) y el caracter ¬.
     Salida:
@@ -963,10 +986,56 @@ def procesarSufamelico(texto):
                 final+=sublista[1]#pegue la letra 1 de la sublista.
                 break#pase a la siguiente
     return final
+def deletrear(texto,opcion):#recibe texto que va a codificar/decodificar
+    lista=[["a","Alfa"],["b","Bravo"],["c","Charlie"],["d","Delta"],["e","Echo\
+"],["f","Foxtrot"],["g","Golf"],["h","Hotel"],["i","India"],["j","Juliet\
+"],["k","Kilo"],["l","Lima"],["m","Mike"],["n","November"],["o","Oscar\
+"],["p","Papa"],["q","Quebec"],["r","Romeo"],["s","Sierra"],["t","Tango\
+"],["u","Uniform"],["v","Victor"],["w","Whiskey"],["x","XRay"],["y","Yanquie\
+"],["z","Zulú"],[" "," "]]#lista con codificaciones
+    final=""#codificado/decodificado
+    acumulador=""#para guardar los caracteres.
+    if opcion==1:#codificar
+        for i,letra in enumerate(texto):#saca letra del texto para comparar con todas las sublistas.
+            for sublista in lista: #saca todas las sublistas para buscar la letra en la posición 0 para cambiarla por la 1.
+                if sublista[0]==letra:#si la letra que tiene coincide con alguna sublista en la posición 0.
+                    final+=sublista[1]#pegue la letra 1 de la sublista.
+                    if i==len(texto)-1:#no pega el simbolo si es el último.
+                        break#se sale del ciclo porque es el último.
+                    final+="~"
+                    break#pase a la siguiente
+        #imprimirDeletreo(final)#llama la función que imprime.
+    else:#decodificar
+        texto+="~"
+        for letra in texto:#saca letras una a una
+            for sublista in lista:#saca las sublistas
+                if letra!="~":#si no es ese signo guardelo en acumulador
+                    acumulador+=letra#guarda #Hotel
+                    break#se sale a la proxima letra
+                elif letra==" ":
+                    acumulador+=" " 
+                if letra=="~":
+                    if acumulador in sublista[1]:#si lo que guardó está en alguna sublista en posicion 1.
+                        final+=sublista[0]#pegue lo que tiene la sublista en la posicion 0.
+                        acumulador=""
+                        break#pase a la siguiente letra. 
+                    else:
+                        continue
+    return final
 #Bitacora
-def crearBitacora(): #esta se llama una linea antes de llamar al menú principal, cuando está todo listo
+def crearBitacora():
+    """
+    Función: Crear el archivo de la bitácora en formato txt
+    Entrada: N/A
+    Salida: N/A
+    """ #esta se llama una linea antes de llamar al menú principal, cuando está todo listo
     bitacora=open("Bitacora.txt","w")
 def annadirBitacora(nombre,entra,sale): #esta se llama en el E/S de cada función de procesamiento, a lo último con los parámetros
+    """
+    Función: Sobre escribir el proceso realizado en el archivo de la bitacora
+    Entrada: Datos escritos y elegidos por el usario
+    Salida: N/A
+    """ 
     now=datetime.now()
     now.strftime("%H:%M:%S")
     bitacora=open("Bitacora.txt","a")

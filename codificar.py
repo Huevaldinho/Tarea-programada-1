@@ -1,21 +1,31 @@
 #Elaborado por: Sebastián Bermúdez Acuña y Felipe Obando Arrieta
 #Fecha de Creación: XX/XX/XXX X:XXpm 
 #Fecha de última Modificación: XX/XX/XX X:XXpm
-#Versión: X.X.X
+#Versión: 3.9.2
 
-#importanción de librerías
-import sys
-sys.setrecursionlimit(5000)
+#importación de librerías
+from datetime import datetime
 from funciones import *
 import re
+import sys
 #Validaciones, entradas y salidas
 #Funciones universales
 def validarTextoCodificarUniversal(): #esta funcion se puede usar para todos las codificaciones
+    """
+    Función: Aporta lista a la función universal para validar el texto según la lista
+    Entrada: N/A
+    Salida: Proceso de validación
+    """ 
     aceptados=["a","b","c","d","e","f","g","h","i","j","k","l","m","n","ñ","o","p","q","r","s","t","u","v","w","x","y","z"," "]
     return validarTextoUniversal(aceptados)
 def validarTextoUniversal(aceptados):#validación para texto a codificar o decodificar que es universal.
+    """
+    Función: Permite la entrada del texto y valida que los textos cumplan ûnicamente con letras y espacios
+    Entrada: Texto del usuario y lista de caracteres aceptados
+    Salida: True o False
+    """ 
     while True:
-        texto=input("Ingrese texto a analizar según las instrucciones de cifrado: ")
+        texto=input("\nIngrese texto a analizar según las instrucciones de cifrado: ")
         texto=texto.lower()#para también trabajar con letras mayúsculas.
         if texto == "":#si es vacío.
             continue
@@ -30,13 +40,18 @@ def validarTextoUniversal(aceptados):#validación para texto a codificar o decod
                     valido=False      #si no está en la lista anota en el contador un 1  para posteriormente saber si hay que ingresar de nuevo el texto.
                     break       #se sale del ciclo for porque ya encontró algo malo.
             if valido==False: #si encontró algo malo lo devuelve al while, a ingresar de nuevo el texto.
-                print("\nSu texto no es válido, intente de nuevo.\n")
+                print("\nSu texto no es válido, intente de nuevo.")
                 continue
             else:
                 return texto
 #•Murcielago
 def murcielago():
-    print(30*"•")
+    """
+    Función: Realiza la función para procesar el código murciélago
+    Entrada: N/A
+    Salida: Texto codificado o decodificado según el usuario
+    """ 
+    print("\n"+30*"•")
     print("\n"+"Código Murciélago".center(30," ")+"\n")
     print(30*"•")
     while True:
@@ -50,7 +65,7 @@ def murcielago():
             elif opcion==2:
                 texto=validarTextoDecodificarMurcielago()#validar el texto a decodificar.
                 print("\nTexto decodificado: \""+decodificarMurcielago(texto)+"\"")#llama la codificación e imprimer el return de la función.
-                annadirBitacora("Murciélago-Cod",texto,decodificarMurcielago(texto))
+                annadirBitacora("Murciélago-Dec",texto,decodificarMurcielago(texto))
                 return ""
             else:#numero mayor a 1.
                 print("Intente de nuevo, según las instrucciones especificadas.\n1. Codificar.\n2. Decodificar.")
@@ -58,14 +73,25 @@ def murcielago():
         except:#cualquier caracter diferente de numero.
             print("\nIntente de nuevo, según las instrucciones especificadas.\n1. Codificar.\n2. Decodificar.")
             continue
+    return""
 #Validación
 def validarTextoDecodificarMurcielago():
+    """
+    Función: Aporta lista a la función universal para validar el texto según la lista
+    Entrada: N/A
+    Salida: Proceso de validación
+    """ 
     aceptados=["7","b","3","d","5","f","8","h","4","j","k","6","0","n","ñ","9","p","q","2","s","t","1","v","w","x","y","z","*"]
     return validarTextoUniversal(aceptados)
 #•Eucalipto
 #entrada
 def eucalipto():
-    print(30*"•")
+    """
+    Función: Realiza la función para procesar el código eucalipto
+    Entrada: N/A
+    Salida: Texto codificado o decodificado según el usuario
+    """ 
+    print("\n"+30*"•")
     print("\n"+"Código Eucalipto".center(30," ")+"\n")
     print(30*"•")
     while True:
@@ -79,7 +105,7 @@ def eucalipto():
             elif opcion==2:
                 texto=validarTextoDecodificarEucalipto()#validar el texto a decodificar.
                 print("\nTexto decodificado: \""+decodificarEucalipto(texto)+"\"")#llama la codificación e imprimer el return de la función.
-                annadirBitacora("Eucalipto-Cod",texto,decodificarEucalipto(texto))
+                annadirBitacora("Eucalipto-Dec",texto,decodificarEucalipto(texto))
                 return ""
             else:#numero mayor a 1.
                 print("\nIntente de nuevo, según las instrucciones especificadas.\n1. Codificar.\n2. Decodificar.")
@@ -89,18 +115,22 @@ def eucalipto():
             continue
 #validar
 def validarTextoDecodificarEucalipto():
+    """
+    Función: Aporta lista a la función universal para validar el texto según la lista
+    Entrada: N/A
+    Salida: Proceso de validación
+    """ 
     aceptados=["4","b","3","d","1","f","g","h","6","j","k","5","m","n","ñ","9","7","q","r","s","8","2","v","w","x","y","z","°"]
     return validarTextoUniversal(aceptados)
 #•Cenit polar
 #Entradas/salidas
 def cenitPolar():
     """
-    Función: Solicitar opciones: codificar o decodificar Cenit Polar.
-    Entradas: N/A. Dentro de la función se solicita 1 o 2, para codificar o decodificar
-    respectivamente.
-    Salidas: N/A. Se muestra el resultado de la codificación/decodificación.
-    """
-    print(30*"•")
+    Función: Realiza la función para procesar el código murciélago
+    Entrada: N/A
+    Salida: Texto codificado o decodificado según el usuario
+    """ 
+    print("\n"+30*"•")
     print("\n"+"Código Cenit Polar".center(30," ")+"\n")
     print(30*"•")
     while True:
@@ -114,7 +144,7 @@ def cenitPolar():
             elif opcion==2:
                 texto=validarTextoCodificarUniversal()#validar el texto a decodificar.
                 print("\nTexto decodificado: \""+decodificarCenit(texto)+"\"")#llama la codificación e imprimer el return de la función.
-                annadirBitacora("Cenit Polar-Cod",texto,decodificarCenit(texto))
+                annadirBitacora("Cenit Polar-Dec",texto,decodificarCenit(texto))
                 return ""
             else:#numero mayor a 1.
                 print("\nIntente de nuevo, según las instrucciones especificadas.\n1. Codificar.\n2. Decodificar.")
@@ -130,7 +160,7 @@ def iniciarCodigoMorse():
     Entrada: N/A. Dentro de esta función se solicita un texto, tiene que seguir las intrucciones.
     Salida: N/A.
     """
-    print(30*"•")
+    print("\n"+30*"•")
     print("\n"+"Código Morse".center(30," ")+"\n")
     print(30*"•")
     while True:#ciclo infinito hasta que se ingrese correctamente un texto.
@@ -142,7 +172,7 @@ def iniciarCodigoMorse():
                 texto=input("\nIngrese texto a codificar: ")
                 texto=texto.upper()
                 if validarCodigoMorse(texto):#Validar es true, codifique.
-                    print("Texto codificado: \""+codificarMorse(texto)+"\"")#guarda el codigo morse.
+                    print("\nTexto codificado: \""+codificarMorse(texto)+"\"")#guarda el codigo morse.
                     annadirBitacora("Morse-Cod",texto,codificarMorse(texto))
                     return ""
             elif opcion==2:
@@ -153,8 +183,8 @@ def iniciarCodigoMorse():
                 texto=input("\nIngrese texto a decodificar: ")
                 texto=texto.upper()
                 if validarDecodificarMorse(texto):#Validar es true, codifique.
-                    print("Texto decodificado: \""+decodificarMorse(texto)+"\"")#guarda el codigo morse.
-                    annadirBitacora("Morse-Cod",texto,decodificarMorse(texto))
+                    print("\nTexto decodificado: \""+decodificarMorse(texto)+"\"")#guarda el codigo morse.
+                    annadirBitacora("Morse-Dec",texto,decodificarMorse(texto))
                     return ""
             else:#numero mayor a 1.
                 print("Intente de nuevo, según las instrucciones especificadas.\n1. Codificar.\n2. Decodificar.")
@@ -229,7 +259,7 @@ def iniciarSufamelico():
     Entrada: N/A.
     Salida: N/A.
     """
-    print(30*"•")
+    print("\n"+30*"•")
     print("\n"+"Código Sufamélico".center(30," ")+"\n")
     print(30*"•")
     while True:
@@ -242,10 +272,10 @@ def iniciarSufamelico():
                 annadirBitacora("Sufamélico-Cod",texto,procesarSufamelico(texto))
                 return ""
             elif opcion==2:
-                texto=validarTextoUniversal()#validar el texto a codificar.
+                texto=validarTextoCodificarUniversal()#validar el texto a codificar.
                 texto=texto.upper()
                 print("\nTexto decodificado: \""+procesarSufamelico(texto)+"\"")#llama la codificación e imprimer el return de la función.
-                annadirBitacora("Sufamélico-Cod",texto,procesarSufamelico(texto))
+                annadirBitacora("Sufamélico-Dec",texto,procesarSufamelico(texto))
                 return ""
             else:#numero mayor a 1.
                 print("\nIntente de nuevo, según las instrucciones especificadas.\n1. Codificar.\n2. Decodificar.")
@@ -253,11 +283,70 @@ def iniciarSufamelico():
         except:#cualquier caracter diferente de numero.
             print("\nIntente de nuevo, según las instrucciones especificadas.\n1. Codificar.\n2. Decodificar.")
             continue
+#•Deletreo
+#Entrada/Salida
+def iniciarDeletrear():
+    """
+    Función: Realiza la función para procesar el código deletreo
+    Entrada: N/A
+    Salida: Texto codificado o decodificado según el usuario
+    """ 
+    print("\n"+30*"•")
+    print("\n"+"Código Deletreo".center(30," ")+"\n")
+    print(30*"•")
+    while True:
+        try:
+            opcion=int(input("\nIngrese 1 para codificar o 2 para decodificar: "))
+            if opcion==1:#codificar
+                texto=input("\nIngrese el texto que desea codificar(debe contener solo\
+ letras minúsculas sin la ñ ni tildes): ")
+                if validarDeletrear(texto,opcion):#valida el texto.
+                    print("\nTexto codificado: \""+deletrear(texto,opcion)+"\"")#guarda el resultado de la codificacion
+                    annadirBitacora("Deletreo-Cod",texto,deletrear(texto,opcion))
+                    break#termine el ciclo.
+                else:#no es válido
+                    print("\nDebe ingresar solo letras y espacios.")
+                    continue
+            elif opcion==2:#decodificar
+                texto=input("\nIngrese texto que desaa decodificar(debe contener\
+ letras minúsculas, espacios o el caracter ~).\nDebe seguir el siguiente formato: primera letra\
+  de las palabras en mayúscula, antes y después de cada palabra excepto por la \
+  primera y la última palabra. No puede empezar ni terminar por ~. Los espacios\
+   se colocan igual que una palabra ~ ~:")
+                if validarDeletrear(texto,opcion):#valida el texto codificado.
+                    print("\nTexto decodificado: \""+deletrear(texto,opcion)+"\"")#guarda el texto decodificado.
+                    annadirBitacora("Deletreo-Dec",texto,deletrear(texto,opcion))
+                    break#termina el ciclo.
+                else:#no es válido
+                    print("Debe ingresar solo letras, espacios o ~.")
+                    continue
+            else:#no es 1 o 2.
+                print("\nDigite una opción correcta, 1 para codificar o 2 para decodificar.")
+                continue
+        except:#error de opcion 1 o 2.
+            print("Siga las instrucciones.")
+    return ""
+#Validacion Deletreo
+def validarDeletrear(texto,opcion):
+    if texto==" " or not texto:#si es un espacio en blanco o vacío.
+        print("Debe ingresar un texto.")
+        return False
+    if opcion==1:#validacion para codificar.
+        texto.lower()
+        if re.match("^[\sa-z]+$",texto):#Valida letras y espacio.
+            return True#si cumple.
+    elif opcion==2:#validacion para decodificar.
+        if texto[0]=="~" or texto[-1]=="~":#primero o el último es ~. no se puede.
+            return False
+        if re.match("^[\sa-zA-Z~]+$",texto):#Valida letras, espacios y ~.
+            return True#si cumple.
+    else:#no es letra o espacio o ~.
+        return False
 #menú
 def menu():
     """
     Funcionamiento: De manera repetitiva, muestra el menú al usuario. 
-    Entradas: NA
+    Entradas: N/A
     Salidas: Resultado según lo solicitado
     """
     print ("\n"+50*"="+"\n")
@@ -275,7 +364,7 @@ def menu():
             opcion = int (input ("\nElija una opción: "))
             break
         except:
-            print ("Opción inválida, indique una opción según las opciones indicadas.")
+            print ("\nOpción inválida, indique una opción según las opciones indicadas.")
             continue
     if opcion >=0 and opcion <=7:   #ojo
         if opcion == 1:
@@ -288,12 +377,12 @@ def menu():
             iniciarCodigoMorse()
         elif opcion == 5:
             iniciarSufamelico() 
-        elif opcion == 6:   #luego se explicará recursividad
-            pass#falta la última
+        elif opcion == 6:
+            iniciarDeletrear()
         else:#0 cerrar.
-            return ""
+            sys.exit()
     else:
-        print ("Opción inválida, indique una opción según las opciones indicadas.")
+        print ("\nOpción inválida, indique una opción según las opciones indicadas.")
     menu()
 #Programa Principal
 crearBitacora()
