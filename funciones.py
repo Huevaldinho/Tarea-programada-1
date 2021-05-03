@@ -781,7 +781,6 @@ def decodificarMurcielago(texto):
             codificado+=texto[i]#otras letras que no se tienen que cambiar.
     return codificado.upper()
 def codificarEucalipto(texto):
-    
     codificado=""#variable en blanco para guardar los cambios.
     for i in range(len(texto)):
         if texto[i]=="e":
